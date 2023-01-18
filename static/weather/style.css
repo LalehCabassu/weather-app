@@ -1,0 +1,13 @@
+body {
+    background-color: #f2faff;
+    font-family: "Comic Sans MS";
+
+}
+
+input[type=submit] {
+    font-family: inherit
+}
+
+input[type=reset] {
+    font-family: inherit
+}

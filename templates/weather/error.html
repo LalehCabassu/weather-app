@@ -1,0 +1,7 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'weather/style.css' %}" />
+
+<h2>Error</h2>
+<p>{{ message }}</p>
+<a href="{% url 'index' %}">Back</a>

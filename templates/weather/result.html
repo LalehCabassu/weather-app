@@ -1,0 +1,80 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'weather/style.css' %}" />
+
+<h2>Current Weather</h2>
+
+<table>
+    <tr>
+        <td>
+            <h3>{{ city }}, {{ country }}</h3>
+        </td>
+    <tr>
+        <td></td>
+        <td>
+            <h4>{{ temperature }} °{{ unit }}</h4>
+        </td>
+        <td>
+            <h4>{{ description }}</h4>
+        </td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td>Humidity</td>
+        <td>{{ humidity }}%</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Cloud Coverage</td>
+        <td>{{ cloud_percent }}%</td>
+    </tr>
+
+    {% if wind_speed %}
+        <tr>
+            <td></td>
+            <td>Wind</td>
+            <td>{{ wind_speed }} m/s,
+            {% if wind_orientation %}{{ wind_orientation }}</td>{% endif %}
+        </tr>
+    {% endif %}
+
+    {% if rain_amount %}
+        <tr>
+            <td></td>
+            <td>Rain Amount</td>
+            <td>{{ rain_amount }} mm</td>
+        </tr>
+    {% endif %}
+    {% if snow_amount %}
+        <tr>
+            <td></td>
+            <td>Snow Amount</td>
+            <td>{{ snow_amount }}</td>
+        </tr>
+    {% endif %}
+
+    <tr>
+        <td></td>
+        <td>Minimum</td>
+        <td>{{ temperature_min }}°{{ unit }}</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Maximum</td>
+        <td>{{ temperature_max }}°{{ unit }}</td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td>Sunrise</td>
+        <td>{{ sunrise }}</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Sunset</td>
+        <td>{{ sunset }}</td>
+    </tr>
+
+</table>
+<a href="{% url 'index' %}">Back</a>

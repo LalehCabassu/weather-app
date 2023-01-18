@@ -1,0 +1,56 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'weather/style.css' %}" />
+
+{% load countries %}
+{% get_countries as countries %}
+
+<h2>{{ message }}</h2>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'result' %}" method="post">
+{% csrf_token %}
+<table>
+    <tr>
+        <td>
+            {% for et in enquiry_types %}
+            <input type="radio" name="enquiry_type" id="enquiry_type{{ forloop.counter }}" value="{{ et.type }}"
+                   {% ifequal et.default True %} checked='checked' {% endifequal %} />
+            <label for="enquiry_type{{ forloop.counter }}">{{ et.message }}</label>
+            {% endfor %}
+        </td>
+        <td>
+            <input type="text" name="enquiry_param" id="enquiry_param" value="{{ location.enquiry_param }}" size="39"/>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <label for="country_code">Country  </label>
+        </td>
+        <td>
+            <select name="country_code" id="country_code">
+            {% for country in countries %}
+                <option value="{{ country.code }}" {% ifequal country.code "FR" %} selected='selected' {% endifequal %}>{{ country.name }}</option>
+            {% endfor %}
+            </select>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2">
+    {% for tu in temperature_units %}
+        <input type="radio" name="temperature_unit" id="temperature_unit{{ forloop.counter }}" value="{{ tu.type }}"
+               {% ifequal tu.default True %} checked='checked' {% endifequal %} />
+        <label for="temperature_unit{{ forloop.counter }}">{{ tu.message }}</label>
+    {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="right">
+            <input id="ok" type="submit" value="OK" />
+        </td>
+    </tr>
+
+</table>
+</form>
