@@ -1,5 +1,5 @@
 # weather-app
-Weather web app backed by OpenWeatherAPI
+Weather web app backed by OpenWeatherAPI in Python/Django
 
 ## Introduction
 This web app provides a nice simple interface to get the weather information of any city that you wish.
